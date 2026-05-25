@@ -1,0 +1,20 @@
+# Core
+python-dotenv>=1.0.0
+pydantic>=2.9.0
+tenacity>=9.0.0
+
+# MCP server
+fastmcp>=3.3.0
+mcp>=1.7.0
+
+# Database
+duckdb>=1.5.0
+
+# SQL parsing / transpilation (read-only enforcement, dialect translation)
+sqlglot>=30.0.0
+
+# HTTP client (used by the eval / smoke tests against a live server)
+httpx>=0.28.0
+
+# LLM glue (NL -> SQL tool, optional)
+openai>=1.50.0

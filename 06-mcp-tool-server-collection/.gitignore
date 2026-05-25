@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+auth/tokens.json
+data/
+logs/
+output/
+# results/*.json now committed for recruiter visibility
+.cache/
+.pytest_cache/
+*.log

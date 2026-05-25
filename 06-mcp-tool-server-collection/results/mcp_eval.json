@@ -1,0 +1,197 @@
+{
+  "summary": {
+    "n_cases": 13,
+    "n_passed": 13,
+    "n_failed": 0
+  },
+  "rows": [
+    {
+      "name": "auth_missing_token",
+      "tool": "list_tables",
+      "principal": "<none>",
+      "expected": "denied",
+      "observed_outcome": "denied",
+      "passed": true,
+      "reason": "",
+      "error": "missing bearer token",
+      "result_summary": null
+    },
+    {
+      "name": "auth_invalid_token",
+      "tool": "list_tables",
+      "principal": "<none>",
+      "expected": "denied",
+      "observed_outcome": "denied",
+      "passed": true,
+      "reason": "",
+      "error": "invalid token",
+      "result_summary": null
+    },
+    {
+      "name": "authz_missing_query_nl_scope",
+      "tool": "natural_language_query",
+      "principal": "tok_analyst_public",
+      "expected": "denied",
+      "observed_outcome": "denied",
+      "passed": true,
+      "reason": "",
+      "error": "missing required scope(s): query:nl",
+      "result_summary": null
+    },
+    {
+      "name": "sql_gate_drop",
+      "tool": "run_select_sql",
+      "principal": "tok_analyst_public",
+      "expected": "denied",
+      "observed_outcome": "denied",
+      "passed": true,
+      "reason": "",
+      "error": "statement type Drop is not allowed",
+      "result_summary": null
+    },
+    {
+      "name": "sql_gate_insert",
+      "tool": "run_select_sql",
+      "principal": "tok_analyst_public",
+      "expected": "denied",
+      "observed_outcome": "denied",
+      "passed": true,
+      "reason": "",
+      "error": "statement type Insert is not allowed",
+      "result_summary": null
+    },
+    {
+      "name": "sql_gate_multi_statement",
+      "tool": "run_select_sql",
+      "principal": "tok_analyst_public",
+      "expected": "denied",
+      "observed_outcome": "denied",
+      "passed": true,
+      "reason": "",
+      "error": "multiple statements not allowed",
+      "result_summary": null
+    },
+    {
+      "name": "row_limit_injected",
+      "tool": "run_select_sql",
+      "principal": "tok_analyst_public",
+      "expected": "ok",
+      "observed_outcome": "ok",
+      "passed": true,
+      "reason": "",
+      "error": null,
+      "result_summary": {
+        "n_rows": 10000,
+        "referenced_tables": [
+          "taxi_trips"
+        ],
+        "injected_limit": 10000,
+        "masked_columns": [
+          "vendor_id"
+        ],
+        "duration_ms": 143.7,
+        "rewritten_sql": "SELECT * FROM taxi_trips LIMIT 10000"
+      }
+    },
+    {
+      "name": "select_count_no_limit_needed",
+      "tool": "run_select_sql",
+      "principal": "tok_analyst_public",
+      "expected": "ok",
+      "observed_outcome": "ok",
+      "passed": true,
+      "reason": "",
+      "error": null,
+      "result_summary": {
+        "n_rows": 1,
+        "referenced_tables": [
+          "taxi_trips"
+        ],
+        "injected_limit": 10000,
+        "masked_columns": [],
+        "duration_ms": 1.88,
+        "rewritten_sql": "SELECT COUNT(*) AS n FROM taxi_trips LIMIT 10000"
+      }
+    },
+    {
+      "name": "select_join_aggregate",
+      "tool": "run_select_sql",
+      "principal": "tok_analyst_public",
+      "expected": "ok",
+      "observed_outcome": "ok",
+      "passed": true,
+      "reason": "",
+      "error": null,
+      "result_summary": {
+        "n_rows": 5,
+        "referenced_tables": [
+          "taxi_trips"
+        ],
+        "injected_limit": 10000,
+        "masked_columns": [
+          "vendor_id"
+        ],
+        "duration_ms": 9.55,
+        "rewritten_sql": "SELECT vendor_id, COUNT(*) AS trips, ROUND(AVG(fare_amount), 2) AS avg_fare FROM taxi_trips GROUP BY vendor_id ORDER BY trips DESC LIMIT 10000"
+      }
+    },
+    {
+      "name": "pii_masked_for_public_principal",
+      "tool": "sample_rows",
+      "principal": "tok_analyst_public",
+      "expected": "ok",
+      "observed_outcome": "ok",
+      "passed": true,
+      "reason": "",
+      "error": null,
+      "result_summary": {
+        "n_rows": 3,
+        "masked_columns": [
+          "email",
+          "full_name",
+          "phone"
+        ],
+        "table_name": "passengers"
+      }
+    },
+    {
+      "name": "pii_unmasked_for_privileged_principal",
+      "tool": "sample_rows",
+      "principal": "tok_analyst_pii",
+      "expected": "ok",
+      "observed_outcome": "ok",
+      "passed": true,
+      "reason": "",
+      "error": null,
+      "result_summary": {
+        "n_rows": 3,
+        "masked_columns": [],
+        "table_name": "passengers"
+      }
+    },
+    {
+      "name": "describe_table_marks_pii",
+      "tool": "describe_table",
+      "principal": "tok_analyst_public",
+      "expected": "ok",
+      "observed_outcome": "ok",
+      "passed": true,
+      "reason": "",
+      "error": null,
+      "result_summary": {
+        "table_name": "passengers"
+      }
+    },
+    {
+      "name": "nl_query_happy_path",
+      "tool": "natural_language_query",
+      "principal": "tok_data_scientist",
+      "expected": "ok",
+      "observed_outcome": "ok",
+      "passed": true,
+      "reason": "",
+      "error": null,
+      "result_summary": {}
+    }
+  ]
+}
