@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/cuad_v1/
+data/index/
+# results/*.json now committed for recruiter visibility
+.cache/

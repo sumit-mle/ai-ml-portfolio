@@ -1,0 +1,26 @@
+# Core
+python-dotenv>=1.0.0
+pydantic>=2.9.0
+typer>=0.13.0
+
+# Frameworks
+langchain>=0.3.7
+langchain-community>=0.3.5
+langchain-openai>=0.2.6
+langchain-text-splitters>=0.3.2
+llama-index>=0.12.0
+llama-index-embeddings-openai>=0.3.0
+llama-index-llms-openai>=0.3.0
+
+# Retrieval / vector
+faiss-cpu>=1.8.0
+rank-bm25>=0.2.2
+
+# Reranking (heavy; install only when running rerank technique)
+sentence-transformers>=3.0.0
+
+# Dataset
+datasets>=3.0.0
+
+# Eval
+ragas>=0.2.0

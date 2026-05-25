@@ -1,0 +1,192 @@
+{
+  "summary": {
+    "backend": "llamaindex",
+    "technique": "naive",
+    "n_questions": 12,
+    "clause_match_rate": 1.0,
+    "citation_correct_rate": 1.0,
+    "answer_quotes_rate": 0.0
+  },
+  "rows": [
+    {
+      "question": "What license is being granted in this contract?",
+      "doc_id": "sample-001",
+      "category": "License Grant",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-001::01::00",
+        "sample-001::04::00",
+        "sample-001::00::00",
+        "sample-001::06::00"
+      ],
+      "answer": "A non-exclusive, non-transferable, worldwide license to use the Software for internal business purposes during the term of the agreement is being granted."
+    },
+    {
+      "question": "Is there a change of control clause in this contract, and what does it say?",
+      "doc_id": "sample-001",
+      "category": "Change Of Control",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-001::03::00",
+        "sample-001::06::00",
+        "sample-001::04::00",
+        "sample-001::02::00"
+      ],
+      "answer": "Yes, there is a change of control clause in the contract. It states that in the event of a Change of Control of the Licensee, the Licensor has the right to terminate the Agreement. This right must be exercised within thirty (30) days of receiving written notice of the Change of Control, and termination will take effect after an additional thirty (30) days' written notice. A \"Change of Control\" is defined as any merger, consolidation, or sale of all or substantially all of the assets of the Licensee."
+    },
+    {
+      "question": "Are there restrictions on assignment in this contract?",
+      "doc_id": "sample-001",
+      "category": "Anti-Assignment",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-001::04::00",
+        "sample-001::06::00",
+        "sample-001::03::00",
+        "sample-001::01::00"
+      ],
+      "answer": "Yes, there are restrictions on assignment in this contract. The Licensee may not assign or transfer the Agreement, in whole or in part, without obtaining prior written consent from the Licensor, who has the discretion to withhold such consent."
+    },
+    {
+      "question": "Is there a cap on liability or indemnification in this contract?",
+      "doc_id": "sample-001",
+      "category": "Cap On Liability",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-001::05::00",
+        "sample-001::06::00",
+        "sample-001::02::00",
+        "sample-001::03::00"
+      ],
+      "answer": "Yes, there is a cap on liability in this contract. Each party's aggregate liability shall not exceed the fees paid by the Licensee to the Licensor in the twelve months preceding the event that gives rise to the claim."
+    },
+    {
+      "question": "Which jurisdiction's law governs this contract?",
+      "doc_id": "sample-001",
+      "category": "Governing Law",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-001::06::00",
+        "sample-001::00::00",
+        "sample-001::04::00",
+        "sample-001::05::00"
+      ],
+      "answer": "The law of the State of Delaware governs this contract."
+    },
+    {
+      "question": "Does this contract grant exclusivity to either party?",
+      "doc_id": "sample-002",
+      "category": "Exclusivity",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-002::02::00",
+        "sample-002::05::00",
+        "sample-002::01::00",
+        "sample-002::04::00"
+      ],
+      "answer": "Yes, the contract grants exclusivity to the Distributor as it appoints them as the exclusive distributor of the Products in the Territory."
+    },
+    {
+      "question": "Does this contract include a most favored nation clause?",
+      "doc_id": "sample-002",
+      "category": "Most Favored Nation",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-002::03::00",
+        "sample-002::02::00",
+        "sample-002::04::00",
+        "sample-002::05::00"
+      ],
+      "answer": "Yes, the contract includes a most favored nation clause, which ensures that the prices and terms offered to the distributor are no less favorable than those offered to any other distributor of similar size during the term of the agreement."
+    },
+    {
+      "question": "Is there a non-compete provision in this contract?",
+      "doc_id": "sample-002",
+      "category": "Non-Compete",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-002::05::00",
+        "sample-002::02::00",
+        "sample-002::04::00",
+        "sample-002::06::00"
+      ],
+      "answer": "Yes, there is a non-compete provision in the contract that prohibits the Distributor from distributing any competing products for two years following termination."
+    },
+    {
+      "question": "Which jurisdiction's law governs this contract?",
+      "doc_id": "sample-002",
+      "category": "Governing Law",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-002::06::00",
+        "sample-002::04::00",
+        "sample-002::03::00",
+        "sample-002::01::00"
+      ],
+      "answer": "The law of the State of California governs this contract."
+    },
+    {
+      "question": "Are there restrictions on assignment in this contract?",
+      "doc_id": "sample-003",
+      "category": "Anti-Assignment",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-003::02::00",
+        "sample-003::05::00",
+        "sample-003::04::00",
+        "sample-003::03::00"
+      ],
+      "answer": "Yes, there are restrictions on assignment in this contract. Either party may assign the Agreement to a successor only in connection with a merger, acquisition, or sale of substantially all of its assets, and must provide written notice to the other party."
+    },
+    {
+      "question": "Is there a cap on liability or indemnification in this contract?",
+      "doc_id": "sample-003",
+      "category": "Cap On Liability",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-003::03::00",
+        "sample-003::05::00",
+        "sample-003::04::00",
+        "sample-003::02::00"
+      ],
+      "answer": "Yes, there is a cap on indemnification in this contract, which is equal to two times the fees paid in the prior twelve months."
+    },
+    {
+      "question": "Which jurisdiction's law governs this contract?",
+      "doc_id": "sample-003",
+      "category": "Governing Law",
+      "clause_match": 1,
+      "citation_correct": 1,
+      "answer_quotes_clause": 0,
+      "retrieved_ids": [
+        "sample-003::05::00",
+        "sample-003::00::00",
+        "sample-003::03::00",
+        "sample-003::04::00"
+      ],
+      "answer": "The law of New York governs this contract."
+    }
+  ]
+}
