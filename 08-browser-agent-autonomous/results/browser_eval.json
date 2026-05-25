@@ -1,0 +1,130 @@
+{
+  "summary": {
+    "n_vendors": 3,
+    "n_passed": 3,
+    "n_failed": 0,
+    "avg_duration_s": 3.7,
+    "run_id": "eval_e5a80e53"
+  },
+  "rows": [
+    {
+      "vendor_id": "acme-cloud",
+      "vendor_name": "Acme Cloud, Inc.",
+      "duration_s": 3.7,
+      "overall_status": "complete",
+      "n_required": 4,
+      "n_found": 4,
+      "n_missing": 0,
+      "n_expired": 0,
+      "items": [
+        {
+          "kind": "soc2_report",
+          "status": "found",
+          "bytes": 1965,
+          "sha256": "35182a9604d9532d...",
+          "valid_until": "2026-12-31"
+        },
+        {
+          "kind": "iso27001_certificate",
+          "status": "found",
+          "bytes": 1952,
+          "sha256": "649c15ef3a4863af...",
+          "valid_until": "2027-04-30"
+        },
+        {
+          "kind": "w9_form",
+          "status": "found",
+          "bytes": 1897,
+          "sha256": "10b1528ac599792f...",
+          "valid_until": null
+        },
+        {
+          "kind": "certificate_of_insurance",
+          "status": "found",
+          "bytes": 1950,
+          "sha256": "24544549ad3ae1aa...",
+          "valid_until": "2026-09-30"
+        }
+      ],
+      "passed": true,
+      "issues": []
+    },
+    {
+      "vendor_id": "sentinel-security",
+      "vendor_name": "Sentinel Security Systems Ltd.",
+      "duration_s": 4.6,
+      "overall_status": "complete",
+      "n_required": 4,
+      "n_found": 4,
+      "n_missing": 0,
+      "n_expired": 0,
+      "items": [
+        {
+          "kind": "soc2_report",
+          "status": "found",
+          "bytes": 1954,
+          "sha256": "19f6dc8f4aec074e...",
+          "valid_until": "2026-08-15"
+        },
+        {
+          "kind": "iso27001_certificate",
+          "status": "found",
+          "bytes": 1955,
+          "sha256": "0569a70da49d6db5...",
+          "valid_until": "2027-01-22"
+        },
+        {
+          "kind": "w9_form",
+          "status": "found",
+          "bytes": 1892,
+          "sha256": "4ae372402253caea...",
+          "valid_until": null
+        },
+        {
+          "kind": "certificate_of_insurance",
+          "status": "found",
+          "bytes": 1956,
+          "sha256": "422cf3158c4dc55f...",
+          "valid_until": "2026-11-05"
+        }
+      ],
+      "passed": true,
+      "issues": []
+    },
+    {
+      "vendor_id": "terra-data",
+      "vendor_name": "Terra Data Analytics LLC",
+      "duration_s": 2.9,
+      "overall_status": "partial",
+      "n_required": 3,
+      "n_found": 2,
+      "n_missing": 1,
+      "n_expired": 0,
+      "items": [
+        {
+          "kind": "soc2_report",
+          "status": "found",
+          "bytes": 1949,
+          "sha256": "76895d3fe2c113f7...",
+          "valid_until": "2026-10-01"
+        },
+        {
+          "kind": "w9_form",
+          "status": "found",
+          "bytes": 1888,
+          "sha256": "73831c8548c32244...",
+          "valid_until": null
+        },
+        {
+          "kind": "certificate_of_insurance",
+          "status": "missing",
+          "bytes": null,
+          "sha256": "",
+          "valid_until": null
+        }
+      ],
+      "passed": true,
+      "issues": []
+    }
+  ]
+}
