@@ -1,0 +1,12 @@
+# Core
+python-dotenv>=1.0.0
+pydantic>=2.9.0
+tenacity>=9.0.0
+
+# Web server
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+websockets>=14.0
+
+# OpenAI (Realtime + ChatCompletions for the eval text mode)
+openai>=1.50.0

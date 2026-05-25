@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Acme IT Helpdesk — Voice Agent</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --panel-2: #1f242d;
+      --fg: #e6edf3;
+      --muted: #8b949e;
+      --accent: #2ea043;
+      --warn: #d29922;
+      --err: #f85149;
+      --user: #58a6ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg); color: var(--fg); min-height: 100vh;
+    }
+    header {
+      padding: 16px 24px; border-bottom: 1px solid #30363d;
+      display: flex; align-items: center; gap: 16px;
+    }
+    header h1 { margin: 0; font-size: 18px; font-weight: 600; }
+    .pill {
+      font-size: 12px; padding: 2px 8px; border-radius: 999px;
+      background: var(--panel-2); color: var(--muted);
+    }
+    main {
+      max-width: 960px; margin: 32px auto; padding: 0 16px;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px;
+    }
+    @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--panel); border: 1px solid #30363d; border-radius: 8px;
+      padding: 16px; min-height: 320px;
+    }
+    .card h2 { margin: 0 0 12px 0; font-size: 14px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+    .controls { display: flex; gap: 8px; margin-bottom: 16px; }
+    button {
+      background: var(--accent); color: white; border: none; padding: 8px 16px;
+      border-radius: 6px; font-weight: 600; cursor: pointer;
+    }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    button.secondary { background: var(--panel-2); color: var(--fg); border: 1px solid #30363d; }
+    .transcript { font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+    .turn { margin-bottom: 12px; }
+    .turn .who { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+    .turn.user .who { color: var(--user); }
+    .turn.agent .who { color: var(--accent); }
+    .tools { font-size: 12px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .tool-call {
+      background: var(--panel-2); padding: 8px 10px; border-radius: 6px; margin-bottom: 8px;
+      border-left: 3px solid var(--warn);
+    }
+    .tool-call .name { color: var(--warn); font-weight: 600; }
+    .tool-call.ok { border-left-color: var(--accent); }
+    .tool-call.ok .name { color: var(--accent); }
+    .tool-call.err { border-left-color: var(--err); }
+    .tool-call.err .name { color: var(--err); }
+    .tool-call pre { margin: 4px 0 0 0; white-space: pre-wrap; word-break: break-word; color: var(--muted); }
+    #status { font-size: 12px; color: var(--muted); }
+    #status.live { color: var(--accent); }
+    #status.warn { color: var(--warn); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Acme IT Helpdesk</h1>
+    <span class="pill">voice agent (gpt-realtime)</span>
+    <span id="status" class="pill">disconnected</span>
+  </header>
+  <main>
+    <section class="card">
+      <h2>Conversation</h2>
+      <div class="controls">
+        <button id="connect">Start call</button>
+        <button id="hangup" class="secondary" disabled>End call</button>
+      </div>
+      <div id="transcript" class="transcript"></div>
+    </section>
+    <section class="card">
+      <h2>Tool calls</h2>
+      <div id="tools" class="tools"></div>
+    </section>
+  </main>
+
+  <script type="module">
+    // ---- Audio plumbing -------------------------------------------------
+    // Browser captures mic at 24kHz, sends to server as base64 PCM16 frames.
+    // Server proxies to OpenAI Realtime; OpenAI streams audio back which we
+    // decode and play through an AudioContext queue.
+
+    const els = {
+      connect: document.getElementById('connect'),
+      hangup:  document.getElementById('hangup'),
+      transcript: document.getElementById('transcript'),
+      tools:   document.getElementById('tools'),
+      status:  document.getElementById('status'),
+    };
+
+    let ws = null;
+    let micStream = null;
+    let audioCtx = null;
+    let workletNode = null;
+    let playbackCtx = null;
+    let nextPlaybackTime = 0;
+
+    function setStatus(text, kind = '') {
+      els.status.textContent = text;
+      els.status.className = 'pill' + (kind ? ' ' + kind : '');
+    }
+    function appendTurn(who, text) {
+      const id = `turn-${who}-${Date.now()}`;
+      const div = document.createElement('div');
+      div.className = `turn ${who}`;
+      div.id = id;
+      div.innerHTML = `<div class="who">${who}</div><div class="text"></div>`;
+      els.transcript.appendChild(div);
+      els.transcript.scrollTop = els.transcript.scrollHeight;
+      return div.querySelector('.text');
+    }
+    function appendToolCall(name, args, result) {
+      const ok = result && (result.ok === true || result.ok === undefined && !result.error);
+      const cls = result && result.error ? 'err' : (ok ? 'ok' : '');
+      const div = document.createElement('div');
+      div.className = `tool-call ${cls}`;
+      div.innerHTML = `<div class="name">${name}</div><pre>${JSON.stringify({args, result}, null, 2)}</pre>`;
+      els.tools.appendChild(div);
+      els.tools.scrollTop = els.tools.scrollHeight;
+    }
+
+    // Convert Float32 [-1, 1] from AudioWorklet to base64 PCM16.
+    function f32ToBase64Pcm16(f32) {
+      const buf = new ArrayBuffer(f32.length * 2);
+      const dv = new DataView(buf);
+      for (let i = 0; i < f32.length; i++) {
+        let s = Math.max(-1, Math.min(1, f32[i]));
+        dv.setInt16(i * 2, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+      }
+      const u8 = new Uint8Array(buf);
+      let str = '';
+      for (let i = 0; i < u8.length; i++) str += String.fromCharCode(u8[i]);
+      return btoa(str);
+    }
+
+    // Decode base64 PCM16 to Float32 for playback via Web Audio.
+    function base64Pcm16ToF32(b64) {
+      const bin = atob(b64);
+      const len = bin.length / 2;
+      const out = new Float32Array(len);
+      for (let i = 0; i < len; i++) {
+        const lo = bin.charCodeAt(i * 2);
+        const hi = bin.charCodeAt(i * 2 + 1);
+        let v = (hi << 8) | lo;
+        if (v >= 0x8000) v -= 0x10000;
+        out[i] = v / 0x8000;
+      }
+      return out;
+    }
+
+    function playPcm16(b64) {
+      if (!playbackCtx) return;
+      const f32 = base64Pcm16ToF32(b64);
+      const buf = playbackCtx.createBuffer(1, f32.length, 24000);
+      buf.getChannelData(0).set(f32);
+      const src = playbackCtx.createBufferSource();
+      src.buffer = buf;
+      src.connect(playbackCtx.destination);
+      const now = playbackCtx.currentTime;
+      const start = Math.max(now, nextPlaybackTime);
+      src.start(start);
+      nextPlaybackTime = start + buf.duration;
+    }
+
+    async function startCall() {
+      els.connect.disabled = true;
+      els.hangup.disabled = false;
+      els.transcript.innerHTML = '';
+      els.tools.innerHTML = '';
+      setStatus('connecting…', 'warn');
+
+      const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+      ws = new WebSocket(`${proto}://${location.host}/ws/voice`);
+      ws.onopen = async () => {
+        setStatus('connected', 'live');
+        // Set up audio
+        audioCtx = new AudioContext({ sampleRate: 24000 });
+        playbackCtx = new AudioContext({ sampleRate: 24000 });
+        nextPlaybackTime = 0;
+
+        const workletCode = `
+          class PCMCapture extends AudioWorkletProcessor {
+            constructor() { super(); this._buf = []; this._sent = 0; }
+            process(inputs) {
+              const ch = inputs[0][0];
+              if (!ch) return true;
+              this._buf.push(new Float32Array(ch));
+              this._sent += ch.length;
+              if (this._sent >= 2400) {  // ~100ms at 24kHz
+                const total = this._buf.reduce((a, b) => a + b.length, 0);
+                const flat = new Float32Array(total);
+                let off = 0;
+                for (const x of this._buf) { flat.set(x, off); off += x.length; }
+                this.port.postMessage(flat);
+                this._buf = []; this._sent = 0;
+              }
+              return true;
+            }
+          }
+          registerProcessor('pcm-capture', PCMCapture);
+        `;
+        const blob = new Blob([workletCode], { type: 'application/javascript' });
+        await audioCtx.audioWorklet.addModule(URL.createObjectURL(blob));
+
+        micStream = await navigator.mediaDevices.getUserMedia({ audio: { sampleRate: 24000, channelCount: 1, echoCancellation: true, noiseSuppression: true } });
+        const src = audioCtx.createMediaStreamSource(micStream);
+        workletNode = new AudioWorkletNode(audioCtx, 'pcm-capture');
+        workletNode.port.onmessage = (e) => {
+          if (!ws || ws.readyState !== 1) return;
+          ws.send(JSON.stringify({ type: 'user.audio', delta: f32ToBase64Pcm16(e.data) }));
+        };
+        src.connect(workletNode);
+      };
+      ws.onmessage = (ev) => onMessage(JSON.parse(ev.data));
+      ws.onclose = () => endCall();
+      ws.onerror = () => setStatus('error', 'warn');
+    }
+
+    let agentTextEl = null;
+    let userTextEl = null;
+    function onMessage(msg) {
+      switch (msg.type) {
+        case 'agent.ready':
+          setStatus(`live (${msg.tools.length} tools)`, 'live');
+          break;
+        case 'agent.audio':
+          playPcm16(msg.delta);
+          break;
+        case 'agent.transcript':
+          if (!agentTextEl) agentTextEl = appendTurn('agent', '');
+          agentTextEl.textContent += msg.delta;
+          break;
+        case 'agent.transcript_done':
+          agentTextEl = null;
+          break;
+        case 'user.transcript':
+          if (!userTextEl) userTextEl = appendTurn('user', '');
+          userTextEl.textContent = msg.transcript;
+          userTextEl = null;
+          break;
+        case 'user.speaking':
+          userTextEl = appendTurn('user', '…');
+          break;
+        case 'agent.tool_call':
+          appendToolCall(msg.name, msg.arguments, msg.result);
+          break;
+        case 'agent.error':
+          setStatus(`error: ${msg.message || 'see console'}`, 'warn');
+          console.warn('agent error', msg);
+          break;
+      }
+    }
+
+    function endCall() {
+      setStatus('disconnected');
+      els.connect.disabled = false;
+      els.hangup.disabled = true;
+      if (workletNode) { workletNode.disconnect(); workletNode = null; }
+      if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
+      if (audioCtx) { audioCtx.close(); audioCtx = null; }
+      if (playbackCtx) { playbackCtx.close(); playbackCtx = null; }
+      if (ws && ws.readyState === 1) ws.close();
+    }
+
+    els.connect.addEventListener('click', () => startCall().catch(e => {
+      setStatus(`error: ${e.message}`, 'warn');
+      els.connect.disabled = false;
+    }));
+    els.hangup.addEventListener('click', endCall);
+  </script>
+</body>
+</html>

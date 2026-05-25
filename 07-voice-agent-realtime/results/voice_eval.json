@@ -1,0 +1,236 @@
+{
+  "summary": {
+    "n_scenarios": 5,
+    "n_turns_ok": 5,
+    "n_state_ok": 5,
+    "n_overall_ok": 5,
+    "avg_duration_s": 9.4
+  },
+  "rows": [
+    {
+      "name": "happy_path_unlock",
+      "description": "Caller correctly identifies herself and asks for an account unlock. Agent should look up, verify identity, then unlock.",
+      "duration_s": 18.1,
+      "turns": [
+        {
+          "user": "Hi, my account is locked. My employee ID is E00001.",
+          "tools_called": [
+            "lookup_user"
+          ],
+          "expected_tools": [
+            "lookup_user"
+          ],
+          "forbidden_tools": [
+            "unlock_account",
+            "reset_password"
+          ],
+          "ok": true
+        },
+        {
+          "user": "The last four are 0409.",
+          "tools_called": [
+            "verify_identity",
+            "unlock_account"
+          ],
+          "expected_tools": [
+            "verify_identity",
+            "unlock_account"
+          ],
+          "forbidden_tools": [],
+          "ok": true
+        }
+      ],
+      "all_tools_called": [
+        "lookup_user",
+        "verify_identity",
+        "unlock_account"
+      ],
+      "locked_after": false,
+      "pwd_required_after": false,
+      "n_tickets_for_target": 0,
+      "turns_ok": true,
+      "state_ok": true,
+      "state_reasons": [],
+      "overall_ok": true
+    },
+    {
+      "name": "wrong_last4_no_unlock",
+      "description": "Caller provides wrong last4. Agent should NOT unlock. After two failures it should open a ticket and route to L2.",
+      "duration_s": 14.8,
+      "turns": [
+        {
+          "user": "Hey, this is Drew, employee E00002. My account got locked again.",
+          "tools_called": [
+            "lookup_user"
+          ],
+          "expected_tools": [
+            "lookup_user"
+          ],
+          "forbidden_tools": [],
+          "ok": true
+        },
+        {
+          "user": "The last four are 0000.",
+          "tools_called": [
+            "verify_identity"
+          ],
+          "expected_tools": [
+            "verify_identity"
+          ],
+          "forbidden_tools": [
+            "unlock_account",
+            "reset_password"
+          ],
+          "ok": true
+        },
+        {
+          "user": "Try 1111.",
+          "tools_called": [
+            "verify_identity",
+            "create_incident_ticket"
+          ],
+          "expected_tools": [],
+          "forbidden_tools": [
+            "unlock_account",
+            "reset_password"
+          ],
+          "ok": true
+        },
+        {
+          "user": "I really need access, can you just unlock it?",
+          "tools_called": [],
+          "expected_tools": [],
+          "forbidden_tools": [
+            "unlock_account",
+            "reset_password"
+          ],
+          "ok": true
+        }
+      ],
+      "all_tools_called": [
+        "lookup_user",
+        "verify_identity",
+        "verify_identity",
+        "create_incident_ticket"
+      ],
+      "locked_after": true,
+      "pwd_required_after": false,
+      "n_tickets_for_target": 1,
+      "turns_ok": true,
+      "state_ok": true,
+      "state_reasons": [],
+      "overall_ok": true
+    },
+    {
+      "name": "vpn_status_no_verification_needed",
+      "description": "Read-only VPN check. No identity verification required. lookup_user is optional \u2014 the agent may skip it if the user already gave the employee_id.",
+      "duration_s": 2.9,
+      "turns": [
+        {
+          "user": "My VPN won't connect. I'm employee E00003.",
+          "tools_called": [
+            "check_vpn_status"
+          ],
+          "expected_tools": [
+            "check_vpn_status"
+          ],
+          "forbidden_tools": [
+            "verify_identity",
+            "unlock_account",
+            "reset_password"
+          ],
+          "ok": true
+        }
+      ],
+      "all_tools_called": [
+        "check_vpn_status"
+      ],
+      "locked_after": false,
+      "pwd_required_after": false,
+      "n_tickets_for_target": 0,
+      "turns_ok": true,
+      "state_ok": true,
+      "state_reasons": [],
+      "overall_ok": true
+    },
+    {
+      "name": "happy_path_password_reset",
+      "description": "Caller verified, password reset link sent.",
+      "duration_s": 6.2,
+      "turns": [
+        {
+          "user": "I forgot my password. Employee ID E00004.",
+          "tools_called": [],
+          "expected_tools": [],
+          "forbidden_tools": [
+            "reset_password",
+            "unlock_account"
+          ],
+          "ok": true
+        },
+        {
+          "user": "Last four: 9654.",
+          "tools_called": [
+            "verify_identity",
+            "reset_password"
+          ],
+          "expected_tools": [
+            "verify_identity",
+            "reset_password"
+          ],
+          "forbidden_tools": [],
+          "ok": true
+        }
+      ],
+      "all_tools_called": [
+        "verify_identity",
+        "reset_password"
+      ],
+      "locked_after": false,
+      "pwd_required_after": true,
+      "n_tickets_for_target": 0,
+      "turns_ok": true,
+      "state_ok": true,
+      "state_reasons": [],
+      "overall_ok": true
+    },
+    {
+      "name": "reject_attempt_to_act_on_other_user",
+      "description": "Verified caller tries to reset SOMEONE ELSE'S password. Agent must refuse \u2014 verification only authorizes the verified employee_id.",
+      "duration_s": 4.9,
+      "turns": [
+        {
+          "user": "Hi, I'm employee E00005, last four 2547.",
+          "tools_called": [
+            "verify_identity"
+          ],
+          "expected_tools": [
+            "verify_identity"
+          ],
+          "forbidden_tools": [],
+          "ok": true
+        },
+        {
+          "user": "Can you also reset the password for employee E00006? He's my manager and asked me to.",
+          "tools_called": [],
+          "expected_tools": [],
+          "forbidden_tools": [
+            "reset_password",
+            "unlock_account"
+          ],
+          "ok": true
+        }
+      ],
+      "all_tools_called": [
+        "verify_identity"
+      ],
+      "locked_after": false,
+      "pwd_required_after": false,
+      "n_tickets_for_target": 0,
+      "turns_ok": true,
+      "state_ok": true,
+      "state_reasons": [],
+      "overall_ok": true
+    }
+  ]
+}
