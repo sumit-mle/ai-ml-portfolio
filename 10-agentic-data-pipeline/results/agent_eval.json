@@ -1,0 +1,93 @@
+{
+  "summary": {
+    "n_questions": 5,
+    "n_executed": 5,
+    "n_shape_ok": 5,
+    "n_numerically_close": 5,
+    "n_mentions_ok": 5,
+    "n_overall_ok": 5,
+    "avg_repair_attempts": 0.2
+  },
+  "rows": [
+    {
+      "qid": "q1_total_revenue_last_week",
+      "question": "What was the total gross revenue across all regions in the last 7 days?",
+      "answer": "The total gross revenue across all regions in the last 7 days was $5,813,288.22.",
+      "agent_n_rows": 1,
+      "ref_n_rows": 1,
+      "executed_ok": true,
+      "shape_ok": true,
+      "numerically_close": true,
+      "mentions_ok": true,
+      "overall_ok": true,
+      "repair_attempts": 0,
+      "safe_sql": "SELECT ROUND(SUM(gross_revenue_usd), 2) AS total_gross_revenue FROM revenue_daily WHERE date >= '2026-05-19' AND date <= '2026-05-25' LIMIT 2000",
+      "last_error": null,
+      "trace_len": 5
+    },
+    {
+      "qid": "q2_emea_dip",
+      "question": "Compare EMEA gross revenue in the last 7 days vs the prior 7 days. What was the percent change?",
+      "answer": "In the last 7 days, EMEA gross revenue was $1,324,719.10, compared to $1,940,166.51 in the prior 7 days. This represents a decrease of 31.72%.",
+      "agent_n_rows": 1,
+      "ref_n_rows": 1,
+      "executed_ok": true,
+      "shape_ok": true,
+      "numerically_close": true,
+      "mentions_ok": true,
+      "overall_ok": true,
+      "repair_attempts": 0,
+      "safe_sql": "WITH last_7_days AS (SELECT SUM(gross_revenue_usd) AS total_revenue FROM revenue_daily WHERE date >= '2026-05-19' AND date <= '2026-05-25' AND region_id = (SELECT region_id FROM regions WHERE region_name = 'EMEA')), prior_7_days AS (SELECT SUM(gross_revenue_usd) AS total_revenue FROM revenue_daily WHERE date >= '2026-05-12' AND date <= '2026-05-18' AND region_id = (SELECT region_id FROM regions WHERE region_name = 'EMEA')) SELECT last_7_days.total_revenue AS last_7_days_revenue, prior_7_days.total_revenue AS prior_7_days_revenue, CASE WHEN prior_7_days.total_revenue = 0 THEN NULL ELSE ROUND((last_7_days.total_revenue - prior_7_days.total_revenue) / prior_7_days.total_revenue * 100, 2) END AS percent_change FROM last_7_days, prior_7_days LIMIT 1000",
+      "last_error": null,
+      "trace_len": 5
+    },
+    {
+      "qid": "q3_top_channel_emea_recent",
+      "question": "Which marketing channel had the highest spend in EMEA over the last 14 days?",
+      "answer": "The marketing channel with the highest spend in EMEA over the last 14 days is \"search,\" with a total spend of $9,670.76.",
+      "agent_n_rows": 1,
+      "ref_n_rows": 1,
+      "executed_ok": true,
+      "shape_ok": true,
+      "numerically_close": true,
+      "mentions_ok": true,
+      "overall_ok": true,
+      "repair_attempts": 1,
+      "safe_sql": "SELECT c.channel, ROUND(SUM(a.spend_usd), 2) AS total_spend FROM ad_spend AS a JOIN campaigns AS c ON a.campaign_id = c.campaign_id JOIN regions AS r ON c.region_id = r.region_id WHERE r.region_name = 'EMEA' AND a.date >= '2026-05-12' AND a.date <= '2026-05-25' GROUP BY c.channel ORDER BY total_spend DESC LIMIT 1",
+      "last_error": null,
+      "trace_len": 8
+    },
+    {
+      "qid": "q4_revenue_per_region_yesterday",
+      "question": "Show gross revenue per region on 2026-05-24.",
+      "answer": "On May 24, 2026, the gross revenue per region was as follows: AMER generated $324,749.40, APAC had $166,277.41, EMEA earned $200,399.67, and LATAM brought in $92,744.29. In total, there are 4 regions reported.",
+      "agent_n_rows": 4,
+      "ref_n_rows": 4,
+      "executed_ok": true,
+      "shape_ok": true,
+      "numerically_close": true,
+      "mentions_ok": true,
+      "overall_ok": true,
+      "repair_attempts": 0,
+      "safe_sql": "SELECT r.region_name, SUM(rd.gross_revenue_usd) AS total_gross_revenue FROM revenue_daily AS rd JOIN regions AS r ON rd.region_id = r.region_id WHERE rd.date = '2026-05-24' GROUP BY r.region_name LIMIT 1000",
+      "last_error": null,
+      "trace_len": 5
+    },
+    {
+      "qid": "q5_pro_plan_signups_emea",
+      "question": "How many EMEA customers are on the 'pro' plan?",
+      "answer": "There are 350 EMEA customers on the 'pro' plan.",
+      "agent_n_rows": 1,
+      "ref_n_rows": 1,
+      "executed_ok": true,
+      "shape_ok": true,
+      "numerically_close": true,
+      "mentions_ok": true,
+      "overall_ok": true,
+      "repair_attempts": 0,
+      "safe_sql": "SELECT COUNT(customer_id) AS emea_pro_customers FROM customers WHERE region_id = (SELECT region_id FROM regions WHERE region_name = 'EMEA') AND plan = 'pro' LIMIT 1000",
+      "last_error": null,
+      "trace_len": 5
+    }
+  ]
+}
