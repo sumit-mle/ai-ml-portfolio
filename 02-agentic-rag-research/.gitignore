@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/pubmed/
+data/index/
+# results/*.json now committed for recruiter visibility
+.cache/
+.checkpoints/
