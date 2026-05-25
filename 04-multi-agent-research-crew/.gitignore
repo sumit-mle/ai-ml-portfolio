@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/
+output/*.json
+output/*.md
+# results/*.json now committed for recruiter visibility
+.cache/
+*.log

@@ -1,0 +1,87 @@
+{
+  "summary": {
+    "n_briefings": 5,
+    "n_completed": 5,
+    "n_passed_judge": 0,
+    "avg_company_facts_accuracy": 0.96,
+    "avg_signal_specificity": 0.82,
+    "avg_angle_alignment": 0.76,
+    "avg_talk_track_usability": 0.72,
+    "avg_discovery_question_quality": 0.64,
+    "avg_citation_discipline": 0.66,
+    "overall_average": 0.76,
+    "avg_duration_s": 95.06
+  },
+  "rows": [
+    {
+      "company": "Microsoft Corporation",
+      "duration_s": 102.4,
+      "company_facts_accuracy": 0.9,
+      "signal_specificity": 0.8,
+      "angle_alignment": 0.8,
+      "talk_track_usability": 0.8,
+      "discovery_question_quality": 0.6,
+      "citation_discipline": 0.5,
+      "average": 0.73,
+      "overall_pass": false,
+      "internal_critique_pass": true,
+      "rationale": "The company facts are accurate and current, with correct details about Microsoft Corporation, including its CEO and revenue. Recent signals are specific and dated, highlighting layoffs and earnings growth, which align well with the seller's offering. The strategic angle effectively ties pain points to the seller's solution, but the discovery questions lack some specificity and could be more tailored to Microsoft's current AI initiatives. The talk track is usable, but the lack of citations for ex"
+    },
+    {
+      "company": "Costco Wholesale Corporation",
+      "duration_s": 100.8,
+      "company_facts_accuracy": 1.0,
+      "signal_specificity": 0.9,
+      "angle_alignment": 0.8,
+      "talk_track_usability": 0.8,
+      "discovery_question_quality": 0.6,
+      "citation_discipline": 0.7,
+      "average": 0.8,
+      "overall_pass": false,
+      "internal_critique_pass": true,
+      "rationale": "The briefing provides accurate and current company facts, including the CEO's name and financial data, which scores a perfect 1.0 for company facts accuracy. The recent signals are specific and dated, contributing to a high score of 0.9 for signal specificity. The strategic angle aligns well with the seller's offering, earning a score of 0.8 for angle alignment. The talk track is usable, but could be slightly refined, resulting in a score of 0.8. However, the discovery questions lack specificity"
+    },
+    {
+      "company": "Pfizer Inc.",
+      "duration_s": 87.9,
+      "company_facts_accuracy": 0.9,
+      "signal_specificity": 0.8,
+      "angle_alignment": 0.8,
+      "talk_track_usability": 0.8,
+      "discovery_question_quality": 0.6,
+      "citation_discipline": 0.5,
+      "average": 0.73,
+      "overall_pass": false,
+      "internal_critique_pass": true,
+      "rationale": "The briefing is strong in company facts accuracy, with correct and current information about Pfizer, including its CEO, revenue, and product offerings. The recent signals are specific and dated, indicating a clear understanding of Pfizer's current situation. The strategic angle aligns well with the seller's offering, addressing relevant pain points and use cases. The talk track is usable, but the discovery questions lack specificity and could be more tailored to Pfizer's recent activities, which"
+    },
+    {
+      "company": "NextEra Energy Inc.",
+      "duration_s": 89.5,
+      "company_facts_accuracy": 1.0,
+      "signal_specificity": 0.8,
+      "angle_alignment": 0.7,
+      "talk_track_usability": 0.6,
+      "discovery_question_quality": 0.7,
+      "citation_discipline": 0.8,
+      "average": 0.77,
+      "overall_pass": false,
+      "internal_critique_pass": true,
+      "rationale": "The company facts are accurate and current, with correct details about NextEra Energy's leadership, revenue, and operations. The signals provided are specific and dated, particularly the equity sale and acquisition talks, but could benefit from more direct ties to the software's application. The strategic angle aligns well with the seller's offering, addressing relevant pain points, though the talk track lacks specificity and could be more engaging with executive names. Discovery questions are r"
+    },
+    {
+      "company": "JPMorgan Chase & Co.",
+      "duration_s": 94.7,
+      "company_facts_accuracy": 1.0,
+      "signal_specificity": 0.8,
+      "angle_alignment": 0.7,
+      "talk_track_usability": 0.6,
+      "discovery_question_quality": 0.7,
+      "citation_discipline": 0.8,
+      "average": 0.77,
+      "overall_pass": false,
+      "internal_critique_pass": false,
+      "rationale": "The company facts are accurate and current, with correct details about JPMorgan Chase & Co. and its leadership. The signals provided are mostly specific and dated, but could benefit from more concrete figures from the Q4 earnings report to enhance specificity. The strategic angle aligns well with the seller's offering, but the talk track lacks specificity and could be more actionable in addressing JPMorgan's current challenges. The discovery questions are relevant and provoke thought, but could "
+    }
+  ]
+}
