@@ -1,0 +1,257 @@
+{
+  "sut": "project01.llamaindex.naive",
+  "ts": "20260525T163826Z",
+  "n_questions": 12,
+  "use_judge": true,
+  "summary": {
+    "clause_match": 1.0,
+    "citation_correct": 1.0,
+    "context_recall": 1.0,
+    "answer_quotes_clause": 0.0,
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "avg_duration_ms": 4125.9
+  },
+  "rows": [
+    {
+      "qid": "q001",
+      "category": "License Grant",
+      "doc_id": "sample-001",
+      "duration_ms": 12858.2,
+      "answer": "A non-exclusive, non-transferable, worldwide license to use the Software for internal business purposes during the Term is being granted in this contract.",
+      "retrieved_chunk_ids": [
+        "sample-001::01::00",
+        "sample-001::04::00",
+        "sample-001::00::00",
+        "sample-001::06::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the license being granted as stated in the retrieved context, which specifies a non-exclusive, non-transferable, worldwide license for internal business purposes. Additionally, the answer directly addresses the user's question without any off-topic information."
+    },
+    {
+      "qid": "q002",
+      "category": "Change Of Control",
+      "doc_id": "sample-001",
+      "duration_ms": 3860.6,
+      "answer": "Yes, there is a change of control clause in the contract. It states that in the event of a Change of Control of the Licensee, the Licensor has the right to terminate the Agreement within thirty (30) days of receiving written notice of such Change of Control, with a subsequent thirty (30) days' written notice for termination. A \"Change of Control\" is defined as any merger, consolidation, or sale of all or substantially all of the assets of the Licensee.",
+      "retrieved_chunk_ids": [
+        "sample-001::03::00",
+        "sample-001::06::00",
+        "sample-001::04::00",
+        "sample-001::02::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the change of control clause, including the rights of the Licensor and the definition of 'Change of Control'. It directly addresses the user's question without any off-topic information."
+    },
+    {
+      "qid": "q003",
+      "category": "Anti-Assignment",
+      "doc_id": "sample-001",
+      "duration_ms": 3899.4,
+      "answer": "Yes, there are restrictions on assignment in this contract. The Licensee may not assign or transfer the Agreement, in whole or in part, without obtaining prior written consent from the Licensor, who has the discretion to withhold such consent.",
+      "retrieved_chunk_ids": [
+        "sample-001::04::00",
+        "sample-001::06::00",
+        "sample-001::03::00",
+        "sample-001::01::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the restrictions on assignment in the contract. It directly addresses the user's question about whether there are restrictions, confirming that there are, and explains the requirement for prior written consent"
+    },
+    {
+      "qid": "q004",
+      "category": "Cap On Liability",
+      "doc_id": "sample-001",
+      "duration_ms": 3424.8,
+      "answer": "Yes, there is a cap on liability in this contract. Each party's aggregate liability shall not exceed the fees paid by the Licensee to the Licensor in the twelve months preceding the event that gives rise to the claim.",
+      "retrieved_chunk_ids": [
+        "sample-001::05::00",
+        "sample-001::06::00",
+        "sample-001::02::00",
+        "sample-001::03::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the cap on liability, stating that it is limited to the fees paid by the Licensee to the Licensor in the twelve months prior to the claim. Additionally, the answer directly addresses the user's question about "
+    },
+    {
+      "qid": "q005",
+      "category": "Governing Law",
+      "doc_id": "sample-001",
+      "duration_ms": 2297.7,
+      "answer": "The law of the State of Delaware governs this contract.",
+      "retrieved_chunk_ids": [
+        "sample-001::06::00",
+        "sample-001::00::00",
+        "sample-001::04::00",
+        "sample-001::05::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the governing law stated in the retrieved context, which specifies that the Agreement is governed by the laws of the State of Delaware. Additionally, the answer directly addresses the user's question about which jurisdiction's law governs the contract."
+    },
+    {
+      "qid": "q006",
+      "category": "Exclusivity",
+      "doc_id": "sample-002",
+      "duration_ms": 2654.8,
+      "answer": "Yes, the contract grants exclusivity to the Distributor as the exclusive distributor of the Products in the Territory during the term of the agreement.",
+      "retrieved_chunk_ids": [
+        "sample-002::02::00",
+        "sample-002::05::00",
+        "sample-002::01::00",
+        "sample-002::04::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information in the retrieved context, specifically stating that the Distributor is appointed as the exclusive distributor of the Products in the Territory. It directly addresses the user's question about exclusivity."
+    },
+    {
+      "qid": "q007",
+      "category": "Most Favored Nation",
+      "doc_id": "sample-002",
+      "duration_ms": 4459.0,
+      "answer": "Yes, the contract includes a most favored nation clause, which ensures that the prices and terms offered to the distributor are no less favorable than those offered to any other distributor of similar size during the term of the agreement.",
+      "retrieved_chunk_ids": [
+        "sample-002::03::00",
+        "sample-002::02::00",
+        "sample-002::04::00",
+        "sample-002::05::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the most favored nation clause, confirming its existence and summarizing its terms correctly. Additionally, the answer directly addresses the user's question without any off-topic information."
+    },
+    {
+      "qid": "q008",
+      "category": "Non-Compete",
+      "doc_id": "sample-002",
+      "duration_ms": 2530.2,
+      "answer": "Yes, there is a non-compete provision in the contract that prohibits the Distributor from distributing any competing products for two years following termination.",
+      "retrieved_chunk_ids": [
+        "sample-002::05::00",
+        "sample-002::02::00",
+        "sample-002::04::00",
+        "sample-002::06::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the non-compete provision, specifically mentioning the two-year restriction on distributing competing products after termination. Additionally, the answer directly addresses the user's question about the exist"
+    },
+    {
+      "qid": "q009",
+      "category": "Governing Law",
+      "doc_id": "sample-002",
+      "duration_ms": 2576.3,
+      "answer": "The law of the State of California governs this contract.",
+      "retrieved_chunk_ids": [
+        "sample-002::06::00",
+        "sample-002::04::00",
+        "sample-002::03::00",
+        "sample-002::01::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer directly states that the law of the State of California governs the contract, which is explicitly mentioned in the retrieved context. Therefore, it is both factually accurate and directly relevant to the user's question."
+    },
+    {
+      "qid": "q010",
+      "category": "Anti-Assignment",
+      "doc_id": "sample-003",
+      "duration_ms": 3151.0,
+      "answer": "Yes, the contract allows either party to assign the Agreement to a successor in connection with a merger, acquisition, or sale of substantially all of its assets, but requires written notice to the other party.",
+      "retrieved_chunk_ids": [
+        "sample-003::02::00",
+        "sample-003::05::00",
+        "sample-003::04::00",
+        "sample-003::03::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the assignment clause of the contract. It directly addresses the user's question about restrictions on assignment by stating the conditions under which assignment is allowed and the requirement for written not"
+    },
+    {
+      "qid": "q011",
+      "category": "Cap On Liability",
+      "doc_id": "sample-003",
+      "duration_ms": 5227.6,
+      "answer": "Yes, there is a cap on indemnification in this contract, which is equal to two times the fees paid in the prior twelve months.",
+      "retrieved_chunk_ids": [
+        "sample-003::03::00",
+        "sample-003::05::00",
+        "sample-003::04::00",
+        "sample-003::02::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the cap on indemnification, stating it is equal to two times the fees paid in the prior twelve months. Additionally, the answer directly addresses the user's question about the existence of a cap on liability "
+    },
+    {
+      "qid": "q012",
+      "category": "Governing Law",
+      "doc_id": "sample-003",
+      "duration_ms": 2571.2,
+      "answer": "The law of New York governs this contract.",
+      "retrieved_chunk_ids": [
+        "sample-003::05::00",
+        "sample-003::00::00",
+        "sample-003::03::00",
+        "sample-003::04::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer directly states that New York law governs the contract, which is explicitly mentioned in the retrieved context. There are no claims in the answer that are unsupported by the context, and it directly addresses the user's question about which jurisdiction's law governs the contract."
+    }
+  ]
+}

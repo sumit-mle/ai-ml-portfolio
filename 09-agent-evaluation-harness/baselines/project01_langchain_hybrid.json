@@ -1,0 +1,257 @@
+{
+  "sut": "project01.langchain.hybrid",
+  "ts": "20260525T152830Z",
+  "n_questions": 12,
+  "use_judge": true,
+  "summary": {
+    "clause_match": 0.917,
+    "citation_correct": 1.0,
+    "context_recall": 0.917,
+    "answer_quotes_clause": 0.917,
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "avg_duration_ms": 4555.8
+  },
+  "rows": [
+    {
+      "qid": "q001",
+      "category": "License Grant",
+      "doc_id": "sample-001",
+      "duration_ms": 12193.1,
+      "answer": "\"Licensor hereby grants to Licensee a non-exclusive, non-transferable, worldwide license to use the Software during the Term solely for Licensee's internal business purposes.\" [sample-001::01::00]",
+      "retrieved_chunk_ids": [
+        "sample-001::01::00",
+        "sample-001::04::00",
+        "sample-001::00::00",
+        "sample-001::05::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately quotes the license grant from the retrieved context, which states the specific terms of the license being granted. It directly addresses the user's question about what license is being granted in the contract."
+    },
+    {
+      "qid": "q002",
+      "category": "Change Of Control",
+      "doc_id": "sample-001",
+      "duration_ms": 6733.4,
+      "answer": "Yes, there is a change of control clause in this contract. It states:\n\n\"In the event of a Change of Control of Licensee, Licensor shall have the right, exercisable within thirty (30) days of receiving written notice of such Change of Control, to terminate this Agreement upon thirty (30) days' written notice. 'Change of Control' means any merger, consolidation, or sale of all or substantially all of the assets of Licensee.\" \n\nThis is found in section [sample-001::03::00].",
+      "retrieved_chunk_ids": [
+        "sample-001::04::00",
+        "sample-001::03::00",
+        "sample-001::00::00",
+        "sample-001::02::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the content of the retrieved context regarding the change of control clause, including the specific terms and conditions outlined. It directly addresses the user's question about the existence and details of the clause."
+    },
+    {
+      "qid": "q003",
+      "category": "Anti-Assignment",
+      "doc_id": "sample-001",
+      "duration_ms": 7432.4,
+      "answer": "Yes, there are restrictions on assignment in this contract. The relevant clause states: \"Licensee may not assign or transfer this Agreement, in whole or in part, without the prior written consent of Licensor, which consent may be withheld in Licensor's sole discretion.\" [sample-001::04::00]",
+      "retrieved_chunk_ids": [
+        "sample-001::04::00",
+        "sample-001::01::00",
+        "sample-001::05::00",
+        "sample-001::06::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the restrictions on assignment in the contract. It directly addresses the user's question without any off-topic or evasive content."
+    },
+    {
+      "qid": "q004",
+      "category": "Cap On Liability",
+      "doc_id": "sample-001",
+      "duration_ms": 3210.0,
+      "answer": "Yes, there is a cap on liability in this contract. The clause states: \"Each party's aggregate liability under this Agreement shall not exceed the fees paid by Licensee to Licensor in the twelve (12) months preceding the event giving rise to the claim.\" [sample-001::05::00]",
+      "retrieved_chunk_ids": [
+        "sample-001::05::00",
+        "sample-001::04::00",
+        "sample-001::03::00",
+        "sample-001::01::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the cap on liability, directly quoting the relevant clause. It also directly addresses the user's question about the existence of a cap on liability or indemnification in the contract."
+    },
+    {
+      "qid": "q005",
+      "category": "Governing Law",
+      "doc_id": "sample-001",
+      "duration_ms": 2824.4,
+      "answer": "\"This Agreement shall be governed by the laws of the State of Delaware, without regard to its conflict of laws principles.\" [sample-001::06::00]",
+      "retrieved_chunk_ids": [
+        "sample-001::04::00",
+        "sample-001::05::00",
+        "sample-001::06::00",
+        "sample-001::01::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer directly quotes the relevant section of the retrieved context that specifies the governing law of the contract, which is the laws of the State of Delaware. There are no unsupported claims, and the answer is directly relevant to the user's question."
+    },
+    {
+      "qid": "q006",
+      "category": "Exclusivity",
+      "doc_id": "sample-002",
+      "duration_ms": 3038.8,
+      "answer": "Yes, this contract grants exclusivity to the Distributor. The relevant clause states: \"During the Term, Distributor shall not, directly or indirectly, distribute, sell, or promote any product that competes with the Products in the Territory.\" [sample-002::02::00]",
+      "retrieved_chunk_ids": [
+        "sample-002::03::00",
+        "sample-002::02::00",
+        "sample-002::05::00",
+        "sample-002::04::00"
+      ],
+      "clause_match": 0.0,
+      "citation_correct": 1.0,
+      "context_recall": 0.0,
+      "answer_quotes_clause": 0.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the content of the retrieved context, specifically the clause regarding exclusivity for the Distributor. It directly addresses the user's question about whether the contract grants exclusivity."
+    },
+    {
+      "qid": "q007",
+      "category": "Most Favored Nation",
+      "doc_id": "sample-002",
+      "duration_ms": 3416.7,
+      "answer": "Yes, this contract includes a most favored nation clause. The relevant clause states: \"Supplier represents that the prices and terms offered to Distributor under this Agreement are no less favorable than those offered to any other distributor of similar size during the Term.\" [sample-002::03::00]",
+      "retrieved_chunk_ids": [
+        "sample-002::03::00",
+        "sample-002::05::00",
+        "sample-002::00::00",
+        "sample-002::01::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately confirms the presence of a most favored nation clause in the contract and directly quotes the relevant section from the retrieved context, ensuring full support for the claim. Additionally, the answer directly addresses the user's question without any off-topic information."
+    },
+    {
+      "qid": "q008",
+      "category": "Non-Compete",
+      "doc_id": "sample-002",
+      "duration_ms": 3442.0,
+      "answer": "Yes, there is a non-compete provision in this contract. The relevant clause states: \"For two (2) years following termination, Distributor shall not distribute any product that competes with the Products in the Territory.\" [sample-002::05::00]",
+      "retrieved_chunk_ids": [
+        "sample-002::05::00",
+        "sample-002::02::00",
+        "sample-002::03::00",
+        "sample-002::06::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the non-compete provision, directly addressing the user's question."
+    },
+    {
+      "qid": "q009",
+      "category": "Governing Law",
+      "doc_id": "sample-002",
+      "duration_ms": 2821.5,
+      "answer": "This Agreement shall be governed by the laws of the State of California. [sample-002::06::00]",
+      "retrieved_chunk_ids": [
+        "sample-002::06::00",
+        "sample-002::03::00",
+        "sample-002::05::00",
+        "sample-002::04::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer directly quotes the governing law clause from the retrieved context, accurately stating that the laws of the State of California govern the contract. It is relevant to the user's question about which jurisdiction's law applies."
+    },
+    {
+      "qid": "q010",
+      "category": "Anti-Assignment",
+      "doc_id": "sample-003",
+      "duration_ms": 3730.9,
+      "answer": "Yes, there are restrictions on assignment in this contract. The clause states: \"Either party may assign this Agreement to a successor in connection with a merger, acquisition, or sale of substantially all of its assets, upon written notice to the other party.\" [sample-003::02::00]",
+      "retrieved_chunk_ids": [
+        "sample-003::02::00",
+        "sample-003::01::00",
+        "sample-003::05::00",
+        "sample-003::04::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the assignment clause, stating that either party may assign the agreement under specific conditions. It directly addresses the user's question about restrictions on assignment."
+    },
+    {
+      "qid": "q011",
+      "category": "Cap On Liability",
+      "doc_id": "sample-003",
+      "duration_ms": 3848.0,
+      "answer": "Yes, there is a cap on liability in this contract. The relevant clause states: \"Provider shall indemnify and hold Client harmless from any third-party claim arising out of Provider's gross negligence or willful misconduct, subject to a cap equal to two (2) times the fees paid in the prior twelve months.\" [sample-003::03::00]",
+      "retrieved_chunk_ids": [
+        "sample-003::03::00",
+        "sample-003::02::00",
+        "sample-003::04::00",
+        "sample-003::01::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer accurately reflects the information provided in the retrieved context regarding the cap on liability and indemnification, directly addressing the user's question."
+    },
+    {
+      "qid": "q012",
+      "category": "Governing Law",
+      "doc_id": "sample-003",
+      "duration_ms": 1978.5,
+      "answer": "New York law governs this Agreement. [sample-003::05::00]",
+      "retrieved_chunk_ids": [
+        "sample-003::05::00",
+        "sample-003::04::00",
+        "sample-003::02::00",
+        "sample-003::03::00"
+      ],
+      "clause_match": 1.0,
+      "citation_correct": 1.0,
+      "context_recall": 1.0,
+      "answer_quotes_clause": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "judge_rationale": "The answer directly states that New York law governs the Agreement, which is explicitly mentioned in the retrieved context. There are no claims in the answer that are unsupported by the context, and it directly addresses the user's question about which jurisdiction's law governs the contract."
+    }
+  ]
+}
