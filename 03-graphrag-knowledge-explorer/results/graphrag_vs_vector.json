@@ -1,0 +1,396 @@
+{
+  "graph_summary": {
+    "technique": "graph_rag",
+    "n_questions": 10,
+    "must_mention_hit": 0.8,
+    "filing_recall": 0.7,
+    "answered_rate": 1.0
+  },
+  "vector_summary": {
+    "technique": "vector_rag",
+    "n_questions": 10,
+    "must_mention_hit": 0.3,
+    "filing_recall": 0.45,
+    "answered_rate": 0.6
+  },
+  "by_pattern": {
+    "board_overlap": {
+      "n": 2,
+      "graph_must_mention": 1.0,
+      "vector_must_mention": 0.0
+    },
+    "executive": {
+      "n": 5,
+      "graph_must_mention": 0.6,
+      "vector_must_mention": 0.4
+    },
+    "subsidiary": {
+      "n": 3,
+      "graph_must_mention": 1.0,
+      "vector_must_mention": 0.3333333333333333
+    }
+  },
+  "comparison": {
+    "graph_wins": 5,
+    "ties": 5,
+    "vector_wins": 0,
+    "graph_win_rate": 0.5
+  },
+  "graph_rows": [
+    {
+      "qid": "q01",
+      "pattern": "board_overlap",
+      "technique": "graph_rag",
+      "question": "Which board members serve on both Apple Inc. and JPMorgan Chase & Co.?",
+      "hops": 2,
+      "must_mention_hit": 1.0,
+      "filing_recall": 0.5,
+      "answered": 1,
+      "cited_filings": [
+        "0000019617-26-000096",
+        "0001308179-26-000008"
+      ],
+      "expected_filings": [
+        "0000320193-25-000079",
+        "0001308179-26-000008",
+        "0000019617-26-000096",
+        "0001628280-26-008131"
+      ],
+      "answer": "The board members who serve on both Apple Inc. and JPMorgan Chase & Co. are:\n\n- Alex Gorsky [0001308179-26-000008] and [0000019617-26-000096]\n- Michele G. Buck [0001308179-26-000008] and [0000019617-26-000096] \n\n"
+    },
+    {
+      "qid": "q02",
+      "pattern": "board_overlap",
+      "technique": "graph_rag",
+      "question": "Which board members serve on both Berkshire Hathaway Inc. and JPMorgan Chase & Co.?",
+      "hops": 2,
+      "must_mention_hit": 1.0,
+      "filing_recall": 0.5,
+      "answered": 1,
+      "cited_filings": [
+        "0001193125-26-106253",
+        "0000019617-26-000096"
+      ],
+      "expected_filings": [
+        "0001193125-26-083899",
+        "0001193125-26-106253",
+        "0000019617-26-000096",
+        "0001628280-26-008131"
+      ],
+      "answer": "The board members who serve on both Berkshire Hathaway Inc. and JPMorgan Chase & Co. are:\n\n1. Stephen B. Burke - [0001193125-26-106253], [0000019617-26-000096]\n2. Kenneth I. Chenault - [0001193125-26-106253]\n\nThese individuals are listed as board members for both companies in the provided filings."
+    },
+    {
+      "qid": "q03",
+      "pattern": "executive",
+      "technique": "graph_rag",
+      "question": "Who is the CEO of JPMorgan Chase & Co.?",
+      "hops": 1,
+      "must_mention_hit": 0.0,
+      "filing_recall": 1.0,
+      "answered": 1,
+      "cited_filings": [
+        "0000019617-26-000096"
+      ],
+      "expected_filings": [
+        "0000019617-26-000096"
+      ],
+      "answer": "The CEO of JPMorgan Chase & Co. is James Dimon [0000019617-26-000096]."
+    },
+    {
+      "qid": "q04",
+      "pattern": "executive",
+      "technique": "graph_rag",
+      "question": "Who is the CEO of Tesla, Inc.?",
+      "hops": 1,
+      "must_mention_hit": 1.0,
+      "filing_recall": 1.0,
+      "answered": 1,
+      "cited_filings": [
+        "0001104659-25-090866"
+      ],
+      "expected_filings": [
+        "0001104659-25-090866"
+      ],
+      "answer": "The CEO of Tesla, Inc. is Elon Musk [0001104659-25-090866]."
+    },
+    {
+      "qid": "q05",
+      "pattern": "executive",
+      "technique": "graph_rag",
+      "question": "Who is the CEO of Berkshire Hathaway Inc.?",
+      "hops": 1,
+      "must_mention_hit": 1.0,
+      "filing_recall": 1.0,
+      "answered": 1,
+      "cited_filings": [
+        "0001193125-26-106253"
+      ],
+      "expected_filings": [
+        "0001193125-26-106253"
+      ],
+      "answer": "The current CEO of Berkshire Hathaway Inc. is Gregory Abel, who will assume the role on January 1, 2026. Warren E. Buffett is the CEO until that date [0001193125-26-106253]."
+    },
+    {
+      "qid": "q06",
+      "pattern": "executive",
+      "technique": "graph_rag",
+      "question": "Who is the CEO of Apple Inc.?",
+      "hops": 1,
+      "must_mention_hit": 0.0,
+      "filing_recall": 0.0,
+      "answered": 1,
+      "cited_filings": [
+        "0001308179-26-000008"
+      ],
+      "expected_filings": [
+        "0000320193-25-000079"
+      ],
+      "answer": "The CEO of Apple Inc. is Tim Cook [0001308179-26-000008]."
+    },
+    {
+      "qid": "q07",
+      "pattern": "executive",
+      "technique": "graph_rag",
+      "question": "Who is the CEO. of Microsoft Corporation?",
+      "hops": 1,
+      "must_mention_hit": 1.0,
+      "filing_recall": 1.0,
+      "answered": 1,
+      "cited_filings": [
+        "0001193125-25-245150"
+      ],
+      "expected_filings": [
+        "0001193125-25-245150"
+      ],
+      "answer": "The CEO of Microsoft Corporation is Satya Nadella [0001193125-25-245150]."
+    },
+    {
+      "qid": "q08",
+      "pattern": "subsidiary",
+      "technique": "graph_rag",
+      "question": "What subsidiaries does JPMorgan Chase & Co. disclose?",
+      "hops": 1,
+      "must_mention_hit": 1.0,
+      "filing_recall": 0.5,
+      "answered": 1,
+      "cited_filings": [
+        "0001628280-26-008131"
+      ],
+      "expected_filings": [
+        "0000019617-26-000096",
+        "0001628280-26-008131"
+      ],
+      "answer": "JPMorgan Chase & Co. discloses the following subsidiaries:\n\n1. JPMorgan Chase Bank, N.A. [0001628280-26-008131]\n2. J.P. Morgan Securities LLC [0001628280-26-008131]\n3. JPMorgan Chase Bank, National Association [0001628280-26-008131]\n4. J.P. Morgan Securities plc [0001628280-26-008131]\n5. JPMSE (J.P. Morgan SE) [0001628280-26-008131]"
+    },
+    {
+      "qid": "q09",
+      "pattern": "subsidiary",
+      "technique": "graph_rag",
+      "question": "What subsidiaries does Alphabet Inc. disclose?",
+      "hops": 1,
+      "must_mention_hit": 1.0,
+      "filing_recall": 0.5,
+      "answered": 1,
+      "cited_filings": [
+        "0001652044-26-000018"
+      ],
+      "expected_filings": [
+        "0001308179-26-000342",
+        "0001652044-26-000018"
+      ],
+      "answer": "Alphabet Inc. discloses the following subsidiaries:\n\n1. X [0001652044-26-000018]\n2. Isomorphic Labs [0001652044-26-000018]\n3. Waymo [0001652044-26-000018]\n4. Google [0001652044-26-000018]"
+    },
+    {
+      "qid": "q10",
+      "pattern": "subsidiary",
+      "technique": "graph_rag",
+      "question": "What subsidiaries does Microsoft Corporation disclose?",
+      "hops": 1,
+      "must_mention_hit": 1.0,
+      "filing_recall": 1.0,
+      "answered": 1,
+      "cited_filings": [
+        "0000950170-25-100235",
+        "0001193125-25-245150"
+      ],
+      "expected_filings": [
+        "0001193125-25-245150",
+        "0000950170-25-100235"
+      ],
+      "answer": "Microsoft Corporation discloses the following subsidiaries:\n\n1. Azure [0000950170-25-100235]\n2. LinkedIn [0000950170-25-100235]\n3. Compensation Committee [0001193125-25-245150]\n4. Audit Committee [0001193125-25-245150]\n5. Environmental, Social, and Public Policy Committee [0001193125-25-245150]\n6. Board of Directors [0001193125-25-245150]"
+    }
+  ],
+  "vector_rows": [
+    {
+      "qid": "q01",
+      "pattern": "board_overlap",
+      "technique": "vector_rag",
+      "question": "Which board members serve on both Apple Inc. and JPMorgan Chase & Co.?",
+      "hops": 2,
+      "must_mention_hit": 0.0,
+      "filing_recall": 0.0,
+      "answered": 0,
+      "cited_filings": [],
+      "expected_filings": [
+        "0000320193-25-000079",
+        "0001308179-26-000008",
+        "0000019617-26-000096",
+        "0001628280-26-008131"
+      ],
+      "answer": "Not found in the available filings."
+    },
+    {
+      "qid": "q02",
+      "pattern": "board_overlap",
+      "technique": "vector_rag",
+      "question": "Which board members serve on both Berkshire Hathaway Inc. and JPMorgan Chase & Co.?",
+      "hops": 2,
+      "must_mention_hit": 0.0,
+      "filing_recall": 0.0,
+      "answered": 0,
+      "cited_filings": [],
+      "expected_filings": [
+        "0001193125-26-083899",
+        "0001193125-26-106253",
+        "0000019617-26-000096",
+        "0001628280-26-008131"
+      ],
+      "answer": "Not found in the available filings."
+    },
+    {
+      "qid": "q03",
+      "pattern": "executive",
+      "technique": "vector_rag",
+      "question": "Who is the CEO of JPMorgan Chase & Co.?",
+      "hops": 1,
+      "must_mention_hit": 0.0,
+      "filing_recall": 1.0,
+      "answered": 1,
+      "cited_filings": [
+        "0000019617-26-000096"
+      ],
+      "expected_filings": [
+        "0000019617-26-000096"
+      ],
+      "answer": "The CEO of JPMorgan Chase & Co. is Jamie Dimon [0000019617-26-000096]."
+    },
+    {
+      "qid": "q04",
+      "pattern": "executive",
+      "technique": "vector_rag",
+      "question": "Who is the CEO of Tesla, Inc.?",
+      "hops": 1,
+      "must_mention_hit": 1.0,
+      "filing_recall": 1.0,
+      "answered": 1,
+      "cited_filings": [
+        "0001104659-25-090866"
+      ],
+      "expected_filings": [
+        "0001104659-25-090866"
+      ],
+      "answer": "The CEO of Tesla, Inc. is Elon Musk [0001104659-25-090866]."
+    },
+    {
+      "qid": "q05",
+      "pattern": "executive",
+      "technique": "vector_rag",
+      "question": "Who is the CEO of Berkshire Hathaway Inc.?",
+      "hops": 1,
+      "must_mention_hit": 0.0,
+      "filing_recall": 1.0,
+      "answered": 1,
+      "cited_filings": [
+        "0001193125-26-106253"
+      ],
+      "expected_filings": [
+        "0001193125-26-106253"
+      ],
+      "answer": "The CEO of Berkshire Hathaway Inc. is Gregory E. Abel, who became the Chief Executive Officer on January 1, 2026 [0001193125-26-106253]."
+    },
+    {
+      "qid": "q06",
+      "pattern": "executive",
+      "technique": "vector_rag",
+      "question": "Who is the CEO of Apple Inc.?",
+      "hops": 1,
+      "must_mention_hit": 0.0,
+      "filing_recall": 0.0,
+      "answered": 1,
+      "cited_filings": [
+        "0001308179-26-000008"
+      ],
+      "expected_filings": [
+        "0000320193-25-000079"
+      ],
+      "answer": "The CEO of Apple Inc. is Tim Cook [0001308179-26-000008]."
+    },
+    {
+      "qid": "q07",
+      "pattern": "executive",
+      "technique": "vector_rag",
+      "question": "Who is the CEO. of Microsoft Corporation?",
+      "hops": 1,
+      "must_mention_hit": 1.0,
+      "filing_recall": 1.0,
+      "answered": 1,
+      "cited_filings": [
+        "0001193125-25-245150"
+      ],
+      "expected_filings": [
+        "0001193125-25-245150"
+      ],
+      "answer": "The CEO of Microsoft Corporation is Satya Nadella [0001193125-25-245150]."
+    },
+    {
+      "qid": "q08",
+      "pattern": "subsidiary",
+      "technique": "vector_rag",
+      "question": "What subsidiaries does JPMorgan Chase & Co. disclose?",
+      "hops": 1,
+      "must_mention_hit": 1.0,
+      "filing_recall": 0.5,
+      "answered": 1,
+      "cited_filings": [
+        "0001628280-26-008131"
+      ],
+      "expected_filings": [
+        "0000019617-26-000096",
+        "0001628280-26-008131"
+      ],
+      "answer": "JPMorgan Chase & Co. discloses the following subsidiaries:\n\n1. JPMorgan Chase Bank, National Association (JPMorgan Chase Bank, N.A.) - principal bank subsidiary.\n2. J.P. Morgan Securities LLC - principal non-bank subsidiary.\n3. J.P. Morgan Securities plc - operating subsidiary in the U.K.\n4. J.P. Morgan SE (JPMSE) - operating subsidiary in Germany.\n\nThese subsidiaries operate nationally as well as through overseas branches and representative offices [0001628280-26-008131]."
+    },
+    {
+      "qid": "q09",
+      "pattern": "subsidiary",
+      "technique": "vector_rag",
+      "question": "What subsidiaries does Alphabet Inc. disclose?",
+      "hops": 1,
+      "must_mention_hit": 0.0,
+      "filing_recall": 0.0,
+      "answered": 0,
+      "cited_filings": [],
+      "expected_filings": [
+        "0001308179-26-000342",
+        "0001652044-26-000018"
+      ],
+      "answer": "Not found in the available filings."
+    },
+    {
+      "qid": "q10",
+      "pattern": "subsidiary",
+      "technique": "vector_rag",
+      "question": "What subsidiaries does Microsoft Corporation disclose?",
+      "hops": 1,
+      "must_mention_hit": 0.0,
+      "filing_recall": 0.0,
+      "answered": 0,
+      "cited_filings": [],
+      "expected_filings": [
+        "0001193125-25-245150",
+        "0000950170-25-100235"
+      ],
+      "answer": "Not found in the available filings."
+    }
+  ]
+}
