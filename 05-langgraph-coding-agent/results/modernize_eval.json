@@ -1,0 +1,103 @@
+{
+  "summary": {
+    "n_scenarios": 3,
+    "n_changes_correct": 3,
+    "n_tests_preserved": 3,
+    "n_overall_pass": 3,
+    "avg_duration_s": 7.7
+  },
+  "rows": [
+    {
+      "scenario": "basic_modernization",
+      "description": "A small module with safe modernizations only \u2014 should fully convert.",
+      "duration_s": 14.0,
+      "expected_changes_in": [
+        "lib.py"
+      ],
+      "actually_changed": [
+        "lib.py"
+      ],
+      "changes_correct": true,
+      "tests_before": {
+        "passed": true,
+        "n_passed": 3,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "duration_s": 2.6,
+        "output_tail": "...                                                                      [100%]\n3 passed in 0.03s\n"
+      },
+      "tests_after": {
+        "passed": true,
+        "n_passed": 3,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "duration_s": 2.4,
+        "output_tail": "...                                                                      [100%]\n3 passed in 0.05s\n"
+      },
+      "tests_preserved": true,
+      "rollback_triggered": false,
+      "n_findings": 4,
+      "n_applied": 3
+    },
+    {
+      "scenario": "format_spec_bailout",
+      "description": "Format strings WITH spec ({:.2f}) \u2014 agent must NOT rewrite.",
+      "duration_s": 7.7,
+      "expected_changes_in": [],
+      "actually_changed": [],
+      "changes_correct": true,
+      "tests_before": {
+        "passed": true,
+        "n_passed": 2,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "duration_s": 2.5,
+        "output_tail": "..                                                                       [100%]\n2 passed in 0.04s\n"
+      },
+      "tests_after": {
+        "passed": true,
+        "n_passed": 2,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "duration_s": 2.3,
+        "output_tail": "..                                                                       [100%]\n2 passed in 0.02s\n"
+      },
+      "tests_preserved": true,
+      "rollback_triggered": false,
+      "n_findings": 2,
+      "n_applied": 0
+    },
+    {
+      "scenario": "missing_tests",
+      "description": "Project with NO tests \u2014 agent should still apply safe recipes.",
+      "duration_s": 1.5,
+      "expected_changes_in": [
+        "lib.py"
+      ],
+      "actually_changed": [
+        "lib.py"
+      ],
+      "changes_correct": true,
+      "tests_before": {
+        "passed": true,
+        "n_passed": 0,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "duration_s": 0.0,
+        "output_tail": "(no tests)"
+      },
+      "tests_after": {
+        "passed": true,
+        "n_passed": 0,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "duration_s": 0.0,
+        "output_tail": "(no tests)"
+      },
+      "tests_preserved": true,
+      "rollback_triggered": false,
+      "n_findings": 1,
+      "n_applied": 1
+    }
+  ]
+}

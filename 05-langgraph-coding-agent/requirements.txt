@@ -1,0 +1,15 @@
+# Core
+python-dotenv>=1.0.0
+pydantic>=2.9.0
+tenacity>=9.0.0
+
+# Agent framework
+langgraph>=0.2.0
+langchain>=1.3.0
+langchain-openai>=0.2.0
+
+# Source transformation (preserves comments/formatting)
+libcst>=1.5.0
+
+# Validation
+pytest>=8.0.0
